@@ -2,6 +2,7 @@ package com.xuezixiang.hros.service;
 
 
 import com.xuezixiang.hros.mapper.HrRoleMapper;
+import com.xuezixiang.hros.mapper.MenuRoleMapper;
 import com.xuezixiang.hros.mapper.RoleMapper;
 import com.xuezixiang.hros.model.OpLog;
 import com.xuezixiang.hros.model.Role;
@@ -29,6 +30,9 @@ public class RoleService {
     OplogService oplogService;
     @Autowired
     HrRoleMapper hrRoleMapper;
+
+    @Autowired
+    MenuRoleMapper menuRoleMapper;
 
 
     /**
@@ -68,7 +72,8 @@ public class RoleService {
      **/
 
     public Integer deleteRoleById(Integer rid) {
-        oplogService.addOpLog(new OpLog((byte) 1, new Date(), "删除奖惩: id = " + rid, Hruitls.getCurrent().getName()));
+        oplogService.addOpLog(new OpLog((byte) 1, new Date(), "删除角色: id = " + rid, Hruitls.getCurrent().getName()));
+        menuRoleMapper.deleteByRid(rid);
         hrRoleMapper.deleteByRoleId(rid);
         return roleMapper.deleteByPrimaryKey(rid);
     }

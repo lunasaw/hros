@@ -107,8 +107,12 @@ public class EmpBasicController {
 
     @GetMapping("/maxWorkID")
     public RespBean maxWorkID() {
+        Integer workID = employeeService.maxWorkID();
+        if (workID == null) {
+            workID = 0;
+        }
         RespBean respBean = RespBean.build().setStatus(200)
-                .setObj(String.format("%08d", employeeService.maxWorkID() + 1));
+                .setObj(String.format("%08d", workID + 1));
         return respBean;
     }
 
