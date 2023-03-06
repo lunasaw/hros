@@ -3,6 +3,7 @@
 <mapper namespace="com.liruilong.hros.mapper.EmployeeMapper">
     <resultMap id="BaseResultMap" type="com.liruilong.hros.model.Employee">
         <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="gender" property="gender" jdbcType="CHAR"/>
         <result column="birthday" property="birthday" jdbcType="DATE"/>

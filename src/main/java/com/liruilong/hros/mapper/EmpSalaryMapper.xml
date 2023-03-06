@@ -9,26 +9,32 @@
   <sql id="Base_Column_List" >
     id, eid, sid
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from empsalary
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from empsalary
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.liruilong.hros.model.EmpSalary" >
-    insert into empsalary (id, eid, sid)
-    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.liruilong.hros.model.EmpSalary" >
-    insert into empsalary
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from empsalary
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from empsalary
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByEmpId" parameterType="java.lang.Integer">
+        delete
+        from empsalary
+        where eid = #{eid,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.liruilong.hros.model.EmpSalary">
+        insert into empsalary (id, eid, sid)
+        values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.liruilong.hros.model.EmpSalary">
+        insert into empsalary
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
       <if test="eid != null" >
         eid,
       </if>

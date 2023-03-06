@@ -19,25 +19,32 @@
     from employeetrain
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from employeetrain
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByEmployeetrain">
-     delete from employeetrain
-    where id = #{id,jdbcType=INTEGER}
-        and eid = #{eid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.liruilong.hros.model.Employeetrain" >
-    insert into employeetrain (id, eid, trainstartDate, 
-      trainfinishDate, trainContent, trainstatus, 
-      remark)
-    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{trainstartdate,jdbcType=DATE}, 
-      #{trainfinishdate,jdbcType=TIMESTAMP}, #{traincontent,jdbcType=VARCHAR}, #{trainstatus,jdbcType=TINYINT}, 
-      #{remark,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.liruilong.hros.model.Employeetrain" >
-    insert into employeetrain
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from employeetrain
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByEmployeetrain">
+        delete
+        from employeetrain
+        where id = #{id,jdbcType=INTEGER}
+          and eid = #{eid,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByEmploy">
+        delete
+        from employeetrain
+        where eid = #{eid,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.liruilong.hros.model.Employeetrain">
+        insert into employeetrain (id, eid, trainstartDate,
+                                   trainfinishDate, trainContent, trainstatus,
+                                   remark)
+        values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{trainstartdate,jdbcType=DATE},
+                #{trainfinishdate,jdbcType=TIMESTAMP}, #{traincontent,jdbcType=VARCHAR}, #{trainstatus,jdbcType=TINYINT},
+                #{remark,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.liruilong.hros.model.Employeetrain">
+        insert into employeetrain
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,

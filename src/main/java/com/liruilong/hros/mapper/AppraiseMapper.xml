@@ -16,26 +16,32 @@
     select 
     <include refid="Base_Column_List" />
     from appraise
-    where id = #{id,jdbcType=INTEGER}
+      where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from appraise
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteAppraise">
-    delete from appraise
-    where id = #{id,jdbcType=INTEGER} and eid=#{eid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.liruilong.hros.model.Appraise" >
-    insert into appraise (id, eid, appDate, 
-      appResult, appContent, remark
-      )
-    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{appdate,jdbcType=DATE}, 
-      #{appresult,jdbcType=VARCHAR}, #{appcontent,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.liruilong.hros.model.Appraise" >
-    insert into appraise
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from appraise
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteAppraise">
+        delete
+        from appraise
+        where id = #{id,jdbcType=INTEGER}
+          and eid = #{eid,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteAppraiseEmpId">
+        delete
+        from appraise
+        where eid = #{eid,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.liruilong.hros.model.Appraise">
+        insert into appraise (id, eid, appDate,
+                              appResult, appContent, remark)
+        values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{appdate,jdbcType=DATE},
+                #{appresult,jdbcType=VARCHAR}, #{appcontent,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.liruilong.hros.model.Appraise">
+        insert into appraise
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,

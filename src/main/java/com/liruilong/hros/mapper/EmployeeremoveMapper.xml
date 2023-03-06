@@ -13,26 +13,32 @@
   <sql id="Base_Column_List" >
     id, eid, afterDepId, afterJobId, removeDate, reason, remark
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from employeeremove
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from employeeremove
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.liruilong.hros.model.Employeeremove" >
-    insert into employeeremove (id, eid, afterDepId, 
-      afterJobId, removeDate, reason, 
-      remark)
-    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{afterdepid,jdbcType=INTEGER}, 
-      #{afterjobid,jdbcType=INTEGER}, #{removedate,jdbcType=DATE}, #{reason,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.liruilong.hros.model.Employeeremove" >
-    insert into employeeremove
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from employeeremove
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from employeeremove
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByEmpId" parameterType="java.lang.Integer">
+        delete
+        from employeeremove
+        where eid = #{eid,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.liruilong.hros.model.Employeeremove">
+        insert into employeeremove (id, eid, afterDepId,
+                                    afterJobId, removeDate, reason,
+                                    remark)
+        values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{afterdepid,jdbcType=INTEGER},
+                #{afterjobid,jdbcType=INTEGER}, #{removedate,jdbcType=DATE}, #{reason,jdbcType=VARCHAR},
+                #{remark,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.liruilong.hros.model.Employeeremove">
+        insert into employeeremove
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,

@@ -17,7 +17,10 @@ public interface AppraiseMapper {
 
     int updateByPrimaryKey(Appraise record);
 
-    Integer  deleteAppraise(@Param("eid") Integer eid,@Param("id") Integer id);
+    Integer deleteAppraise(@Param("eid") Integer eid, @Param("id") Integer id);
 
-    Integer  addEmploteeaByPge( @Param("app") Appraise appraise, @Param("ids") Integer[] ids);
+    Integer deleteAppraiseEmpId(@Param("eid") Integer eid);
+
+
+    Integer addEmploteeaByPge(@Param("app") Appraise appraise, @Param("ids") Integer[] ids);
 }

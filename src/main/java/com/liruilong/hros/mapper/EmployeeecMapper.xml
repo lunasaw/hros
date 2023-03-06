@@ -34,17 +34,21 @@
             employeeec ec,
             rwards_punishments,
             employee
-        WHERE
-            ec.ecType = rwards_punishments.id
-            AND employee.id = ec.eid
-        GROUP BY
-            eid
+        WHERE ec.ecType = rwards_punishments.id
+          AND employee.id = ec.eid
+        GROUP BY eid
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from employeeec
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+        delete
+        from employeeec
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByEmpId" parameterType="java.lang.Integer">
+        delete
+        from employeeec
+        where eid = #{eid,jdbcType=INTEGER}
+    </delete>
     <delete id="deleteEmpByEidc">
         delete from employeeec
         where id = #{id,jdbcType=INTEGER}
@@ -53,8 +57,8 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.liruilong.hros.model.Employeeec">
-    insert into employeeec (id, eid, ecDate, 
-      ecReason, ecPoint, ecType, 
+        insert into employeeec (id, eid, ecDate,
+                                ecReason, ecPoint, ecType,
       remark)
     values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{ecdate,jdbcType=DATE}, 
       #{ecreason,jdbcType=VARCHAR}, #{ecpoint,jdbcType=INTEGER}, #{ectype,jdbcType=INTEGER}, 

@@ -37,11 +37,6 @@ public class EmailUtils {
         String pathPy = PATH + emailModel.getPath();
         String[] args = new String[]{"python", pathPy, emailTo, username, titles};
         logger.info(Arrays.toString(args));
-        try {
-            Process process = Runtime.getRuntime().exec(args);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void sendGEmail(EmailModel emailModel) {
@@ -52,13 +47,6 @@ public class EmailUtils {
        // String username = emailModel.getEmployee().getName();
         String[] args = new String[]{"python", pathPy, emailTo, "测试", titles, content};
         logger.info(Arrays.toString(args));
-        try {
-
-            Process process = Runtime.getRuntime().exec(args);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
 

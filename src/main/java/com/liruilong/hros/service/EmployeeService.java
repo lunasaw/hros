@@ -1,6 +1,6 @@
 package com.liruilong.hros.service;
 
-import com.liruilong.hros.mapper.EmployeeMapper;
+import com.liruilong.hros.mapper.*;
 import com.liruilong.hros.model.*;
 import com.liruilong.hros.model.datas.DataModel;
 import com.liruilong.hros.model.datas.DataModelT;
@@ -32,6 +32,22 @@ public class EmployeeService {
     OplogService oplogService;
     @Autowired
     EmployeeRecycleService employeeRecycleService;
+
+    @Autowired
+    EmployeeremoveMapper employeeremoveMapper;
+
+    //    employeetrain
+    @Autowired
+    EmployeetrainMapper employeetrainMapper;
+
+    @Autowired
+    EmpSalaryMapper empSalaryMapper;
+
+    @Autowired
+    AppraiseMapper appraiseMapper;
+
+    @Autowired
+    EmployeeecMapper employeeecMapper;
 
     /*  运行的这个类时的日志打印*/
     public final static Logger logger = LoggerFactory.getLogger(EmployeeService.class);
@@ -88,7 +104,20 @@ public class EmployeeService {
         employee.setId(null);
         employeeRecycleService.addEmployeeRecycle(employee);
         oplogService.addOpLog(new OpLog((byte) 9, new Date(), "员工离职:name:" + employee.getName() + "---workId:" + employee.getWorkid(), Hruitls.getCurrent().getName()));
-        EmailUtils.sendEmail(new EmailModel(employee, "人事管理系统测试##员工离职","emailpyout.py"));
+        EmailUtils.sendEmail(new EmailModel(employee, "人事管理系统测试##员工离职", "emailpyout.py"));
+        employee.setDepartmentid(null);
+        employee.setJoblevelid(null);
+        employee.setPosid(null);
+        employee.setPoliticid(null);
+        employee.setWorkid(null);
+        employee.setNationid(null);
+        employee.setId(id);
+        int i = employeeMapper.updateByPrimaryKey(employee);
+        employeeremoveMapper.deleteByEmpId(id);
+        employeetrainMapper.deleteByEmploy(id);
+        empSalaryMapper.deleteByEmpId(id);
+        appraiseMapper.deleteAppraiseEmpId(id);
+        employeeecMapper.deleteByEmpId(id);
         return employeeMapper.deleteByPrimaryKey(id);
     }
 
@@ -108,8 +137,11 @@ public class EmployeeService {
     }
 
     public Integer deleteEmpByEids(Integer[] ids) {
-        oplogService.addOpLog(new OpLog((byte) 9, new Date(), "员工批量离职:name:" , Hruitls.getCurrent().getName()));
-        return employeeMapper.deleteByPrimaryKeys(ids);
+        oplogService.addOpLog(new OpLog((byte) 9, new Date(), "员工批量离职:name:", Hruitls.getCurrent().getName()));
+        for (Integer id : ids) {
+            deleteEmpByEid(id);
+        }
+        return ids.length;
     }
 
     public RespPageBean getEmployeeByPageWithSalary(Integer page, Integer size) {
