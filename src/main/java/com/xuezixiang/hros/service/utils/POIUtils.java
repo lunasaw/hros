@@ -106,67 +106,60 @@ public class POIUtils {
         c5.setCellValue("身份证号码");
         HSSFCell c6 = r0.createCell(6);
         c6.setCellStyle(headerStyle);
-        c6.setCellValue("婚姻状况");
+        c6.setCellValue("账套名称");
         HSSFCell c7 = r0.createCell(7);
         c7.setCellStyle(headerStyle);
-        c7.setCellValue("民族");
+        c7.setCellValue("基本工资");
         HSSFCell c8 = r0.createCell(8);
         c8.setCellStyle(headerStyle);
-        c8.setCellValue("籍贯");
+        c8.setCellValue("交通补助");
         HSSFCell c9 = r0.createCell(9);
         c9.setCellStyle(headerStyle);
-        c9.setCellValue("政治面貌");
+        c9.setCellValue("午餐补助");
         HSSFCell c10 = r0.createCell(10);
         c10.setCellStyle(headerStyle);
-        c10.setCellValue("电话号码");
+        c10.setCellValue("奖金");
         HSSFCell c11 = r0.createCell(11);
         c11.setCellStyle(headerStyle);
-        c11.setCellValue("联系地址");
+        c11.setCellValue("启用时间");
         HSSFCell c12 = r0.createCell(12);
         c12.setCellStyle(headerStyle);
-        c12.setCellValue("所属部门");
+        c12.setCellValue("养老金比率");
         HSSFCell c13 = r0.createCell(13);
         c13.setCellStyle(headerStyle);
-        c13.setCellValue("职称");
+        c13.setCellValue("养老金基数");
         HSSFCell c14 = r0.createCell(14);
         c14.setCellStyle(headerStyle);
-        c14.setCellValue("职位");
+        c14.setCellValue("医疗保险比率");
         HSSFCell c15 = r0.createCell(15);
         c15.setCellStyle(headerStyle);
-        c15.setCellValue("聘用形式");
+        c15.setCellValue("医疗保险基数");
         HSSFCell c16 = r0.createCell(16);
         c16.setCellStyle(headerStyle);
-        c16.setCellValue("最高学历");
+        c16.setCellValue("公积金比率");
         HSSFCell c17 = r0.createCell(17);
         c17.setCellStyle(headerStyle);
-        c17.setCellValue("专业");
+        c17.setCellValue("公积金基数");
         HSSFCell c18 = r0.createCell(18);
         c18.setCellStyle(headerStyle);
-        c18.setCellValue("毕业院校");
+        c18.setCellValue("所属部门");
         HSSFCell c19 = r0.createCell(19);
         c19.setCellStyle(headerStyle);
-        c19.setCellValue("入职日期");
+        c19.setCellValue("职称");
         HSSFCell c20 = r0.createCell(20);
         c20.setCellStyle(headerStyle);
-        c20.setCellValue("在职状态");
+        c20.setCellValue("职位");
         HSSFCell c21 = r0.createCell(21);
         c21.setCellStyle(headerStyle);
-        c21.setCellValue("邮箱");
-        HSSFCell c22 = r0.createCell(22);
-        c22.setCellStyle(headerStyle);
-        c22.setCellValue("合同期限(年)");
-        HSSFCell c23 = r0.createCell(23);
-        c23.setCellStyle(headerStyle);
-        c23.setCellValue("合同起始日期");
-        HSSFCell c24 = r0.createCell(24);
-        c24.setCellStyle(headerStyle);
-        c24.setCellValue("合同终止日期");
+        c21.setCellValue("聘用形式");
         for (int i = 0; i < list.size(); i++) {
             Employee emp = list.get(i);
             HSSFRow row = sheet.createRow(i + 1);
 
             Salary salary = emp.getSalary();
-
+            if (salary == null) {
+                continue;
+            }
             row.createCell(0).setCellValue(emp.getId());
             row.createCell(1).setCellValue(emp.getName());
             row.createCell(2).setCellValue(emp.getWorkid());
@@ -175,40 +168,51 @@ public class POIUtils {
             cell4.setCellStyle(dateCellStyle);
             cell4.setCellValue(emp.getBirthday());
             row.createCell(5).setCellValue(emp.getIdcard());
-            row.createCell(6).setCellValue(emp.getWedlock());
-            row.createCell(7).setCellValue(emp.getNation().getName());
-            row.createCell(8).setCellValue(emp.getNativeplace());
-            row.createCell(9).setCellValue(emp.getPoliticsstatus().getName());
-            row.createCell(10).setCellValue(emp.getPhone());
-            row.createCell(11).setCellValue(emp.getAddress());
-            row.createCell(12).setCellValue(emp.getDepartment().getName());
-            row.createCell(13).setCellValue(emp.getJobLevel().getName());
-            row.createCell(14).setCellValue(emp.getPosition().getName());
-            row.createCell(15).setCellValue(emp.getEngageform());
-            row.createCell(16).setCellValue(emp.getTiptopdegree());
-            row.createCell(17).setCellValue(emp.getSpecialty());
-            row.createCell(18).setCellValue(emp.getSchool());
-            HSSFCell cell19 = row.createCell(19);
-            cell19.setCellStyle(dateCellStyle);
-            cell19.setCellValue(emp.getBegindate());
-            row.createCell(20).setCellValue(emp.getWorkstate());
-            row.createCell(21).setCellValue(emp.getEmail());
-            row.createCell(22).setCellValue(emp.getContractterm());
-            HSSFCell cell23 = row.createCell(23);
-            cell23.setCellStyle(dateCellStyle);
-            cell23.setCellValue(emp.getBegincontract());
-            HSSFCell cell24 = row.createCell(24);
-            cell24.setCellStyle(dateCellStyle);
-            cell24.setCellValue(emp.getEndcontract());
-            HSSFCell cell25 = row.createCell(25);
-            cell25.setCellStyle(dateCellStyle);
-            cell25.setCellValue(emp.getConversiontime());
+
+            // 工资套餐
+
+            row.createCell(6).setCellValue(salary.getName());
+
+            // 基本
+            row.createCell(7).setCellValue(salary.getBasicsalary());
+
+            // 交通
+            row.createCell(8).setCellValue(salary.getTrafficsalary());
+            // 午餐
+            row.createCell(9).setCellValue(salary.getLunchsalary());
+            // 奖金
+            row.createCell(10).setCellValue(salary.getBasicsalary());
+            // 启用时间
+            HSSFCell cell = row.createCell(11);
+            cell.setCellStyle(dateCellStyle);
+            cell.setCellValue(salary.getCreatedate());
+            // 养老金比率
+            row.createCell(12).setCellValue(salary.getPensionper());
+            // 养老金基数
+            row.createCell(13).setCellValue(salary.getPensionbase());
+            // 医疗保险比率
+            row.createCell(14).setCellValue(salary.getMedicalper());
+            // 医疗保险基数
+            row.createCell(15).setCellValue(salary.getMedicalbase());
+            // 公积金比率
+            row.createCell(16).setCellValue(salary.getAccumulationfundper());
+            // 公积金基数
+            row.createCell(17).setCellValue(salary.getAccumulationfundbase());
+
+
+            // 部门
+            row.createCell(18).setCellValue(emp.getDepartment().getName());
+            row.createCell(19).setCellValue(emp.getJobLevel().getName());
+            row.createCell(20).setCellValue(emp.getPosition().getName());
+            row.createCell(21).setCellValue(emp.getEngageform());
+
+
         }
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         HttpHeaders headers = new HttpHeaders();
         try {
-            headers.setContentDispositionFormData("attachment", new String("员工表.xls".getBytes("UTF-8"), "ISO-8859-1"));
+            headers.setContentDispositionFormData("attachment", new String("员工工资表.xls".getBytes("UTF-8"), "ISO-8859-1"));
             headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
             workbook.write(baos);
         } catch (IOException e) {
@@ -403,8 +407,6 @@ public class POIUtils {
     }
 
 
-     
-
     public static List<Employee> excel2Employee(MultipartFile file, List<Nation> allNations, List<Politicsstatus> allPoliticsstatus
             , List<Department> allDepartments, List<Position> allPositions, List<JobLevel> allJobLevels) {
         List<Employee> list = new ArrayList<>();
@@ -432,7 +434,7 @@ public class POIUtils {
                     //7. 获取列数
                     int physicalNumberOfCells = row.getPhysicalNumberOfCells();
                     employee = new Employee();
-                    for (int k = 0; k < physicalNumberOfCells ; k++) {
+                    for (int k = 0; k < physicalNumberOfCells; k++) {
                         HSSFCell cell = row.getCell(k);
                         System.out.println(cell);
                         switch (cell.getCellType()) {
