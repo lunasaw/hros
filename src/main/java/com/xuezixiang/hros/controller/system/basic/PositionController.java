@@ -36,12 +36,17 @@ public class PositionController {
         return positionService.getAllPositions();
     }
 
+    @GetMapping("/all")
+    public List<Position> getRealAllPositions() {
+        return positionService.getRealAllPositions();
+    }
+
     /**
+     * @return RespBean
      * @Author xuezixiang
      * @Description 添加
      * @Date 15:29 2019/12/25
      * @Param [position]
-     * @return RespBean
      **/
 
     @PostMapping("/")
