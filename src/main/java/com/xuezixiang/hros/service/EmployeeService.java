@@ -9,6 +9,7 @@ import com.xuezixiang.hros.model.datas.DataModelT;
 import com.xuezixiang.hros.model.datas.DataModels;
 import com.xuezixiang.hros.service.utils.EmailUtils;
 import com.xuezixiang.hros.service.utils.Hruitls;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
@@ -51,6 +52,15 @@ public class EmployeeService {
     @Autowired
     EmployeeecMapper employeeecMapper;
 
+    @Autowired
+    HrMapper hrMapper;
+
+    @Autowired
+    HrRoleMapper hrRoleMapper;
+
+    @Autowired
+    RoleMapper roleMapper;
+
     /*  运行的这个类时的日志打印*/
     public final static Logger logger = LoggerFactory.getLogger(EmployeeService.class);
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
@@ -84,12 +94,40 @@ public class EmployeeService {
         return new RespPageBean(total, data);
     }
 
+    @Transactional
     public Integer addEmp(Employee employee) {
         Date beginContract = employee.getBegincontract();
         Date endContract = employee.getEndcontract();
         double month = (Double.parseDouble(yearFormat.format(endContract)) - Double.parseDouble(yearFormat.format(beginContract))) * 12 + (Double.parseDouble(monthFormat.format(endContract)) - Double.parseDouble(monthFormat.format(beginContract)));
         employee.setContractterm(Double.parseDouble(decimalFormat.format(month / 12)));
         int result = employeeMapper.insertSelective(employee);
+        Employee employeeByName = employeeMapper.getEmployeeByName(employee.getName());
+        if (employeeByName == null){
+            throw new RuntimeException("新增员工失败");
+        }
+        Hr hr = new Hr();
+        if (StringUtils.isNoneBlank(employeeByName.getAddress())){
+            hr.setAddress(employeeByName.getAddress());
+        }
+        if (StringUtils.isNoneBlank(employeeByName.getName())){
+            hr.setName(employeeByName.getName());
+            hr.setUsername(employeeByName.getName());
+        }
+        if (StringUtils.isNoneBlank(employeeByName.getPhone())){
+            hr.setPhone(employeeByName.getPhone());
+        }
+        hr.setPassword("$2a$10$ySG2lkvjFHY5O0./CPIE1OI8VJsuKYEzOYzqIa7AJR6sEgSzUFOAm");
+        if (StringUtils.isBlank(hr.getUserface())){
+            hr.setUserface("https://imgsa.baidu.com/forum/pic/item/a832bc315c6034a8df786e5ac31349540823766e.jpg");
+        }
+        hr.setEmployeeId(employeeByName.getId());
+        hrMapper.insert(hr);
+        Hr addHr = hrMapper.loadUserByEmployeeId(employeeByName.getId());
+        Role role = roleMapper.selectByName("员工角色");
+        if (role == null){
+            throw new RuntimeException("应先创建员工角色");
+        }
+        hrRoleMapper.addHrRole(addHr.getId(), new Integer[]{role.getId()});
         oplogService.addOpLog(new OpLog((byte) 2, new Date(), "员工入职::name:" + employee.getName() + "workId:" + employee.getWorkid(), Hruitls.getCurrent().getName()));
         EmailUtils.sendEmail(new EmailModel(employee, "人事管理系统测试##员工入职","emailpy.py"));
 //        mailReceiver.handler(employee);

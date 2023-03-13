@@ -35,6 +35,8 @@ public interface EmployeeMapper {
 
     Employee getEmployeeById(Integer id);
 
+    Employee getEmployeeByName(String name);
+
     Integer deleteByPrimaryKeys(@Param("ids") Integer[] ids);
 
     List<Employee> getEmployeeByPageWithSalary(@Param("page") Integer page, @Param("size") Integer size);

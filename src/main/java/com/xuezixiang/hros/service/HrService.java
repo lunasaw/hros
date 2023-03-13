@@ -5,6 +5,7 @@ import com.xuezixiang.hros.mapper.HrRoleMapper;
 import com.xuezixiang.hros.model.Hr;
 import com.xuezixiang.hros.model.OpLog;
 import com.xuezixiang.hros.service.utils.Hruitls;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -50,6 +51,14 @@ public class HrService implements UserDetailsService {
     public List<Hr> getAllHRs(String name) {
         return hrMapper.getAllHRs(Hruitls.getCurrent().getId(), name);
     }
+    public Hr getBaseHr() {
+        Hr hr = hrMapper.loadUserByEmployeeId(Hruitls.getCurrent().getEmployeeId());
+        if (hr == null){
+            hr = hrMapper.loadUserByUsername(Hruitls.getCurrent().getUsername());
+        }
+        return hr;
+    }
+
 
     @Transactional
     public boolean updateHrRole(Integer hrid, Integer[] rids) {
@@ -71,7 +80,9 @@ public class HrService implements UserDetailsService {
     public Integer addHr(Hr hr) {
         oplogService.addOpLog(new OpLog((byte) 8, new Date(), "操作员信息更新:" + hr.getName(), Hruitls.getCurrent().getName()));
         hr.setPassword("$2a$10$ySG2lkvjFHY5O0./CPIE1OI8VJsuKYEzOYzqIa7AJR6sEgSzUFOAm");
-        hr.setUserface("https://imgsa.baidu.com/forum/pic/item/a832bc315c6034a8df786e5ac31349540823766e.jpg");
+        if (StringUtils.isBlank(hr.getUserface())){
+            hr.setUserface("https://imgsa.baidu.com/forum/pic/item/a832bc315c6034a8df786e5ac31349540823766e.jpg");
+        }
         return hrMapper.insert(hr);
     }
 

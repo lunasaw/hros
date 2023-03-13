@@ -10,13 +10,15 @@ import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
+
 /**
  * @Description : 权限处理,根据请求,分析需要的角色,该类的主要功能就是通过当前的请求地址，获取该地址需要的用户角色
-
  * @Date: 2019/12/24 12:17
  */
 @Component
@@ -42,19 +44,25 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
         //获取所有的菜单url路径
         List<Menu> menus = menuService.getAllMenusWithRole();
         // AntPathMatcher，主要用来实现 ant 风格的 URL 匹配。
-         for (Menu menu : menus) {
+        List<Role> roles = new ArrayList<>();
+        for (Menu menu : menus) {
             if (antPathMatcher.match(menu.getUrl(), requestUrl)) {
                 //拥有当前菜单权限的角色
-                List<Role> roles = menu.getRoles();
-                String[] strings = new String[roles.size()];
-                for (int i = 0; i < roles.size(); i++) {
-                    strings[i] = roles.get(i).getName();
-                }
-                return SecurityConfig.createList(strings);
+                roles.addAll(menu.getRoles());
+
             }
         }
-        // 没匹配上的资源都是登录，或者为公共资源
-        return SecurityConfig.createList("ROLE_LOGIN");
+        String[] strings = new String[roles.size()];
+        for (int i = 0; i < roles.size(); i++) {
+            strings[i] = roles.get(i).getName();
+        }
+
+        if (CollectionUtils.isEmpty(roles)){
+            // 没匹配上的资源都是登录，或者为公共资源
+            return SecurityConfig.createList("ROLE_LOGIN");
+        }
+        return SecurityConfig.createList(strings);
+
     }
 
     /**

@@ -30,6 +30,8 @@ public interface HrMapper {
 
     Hr loadUserByUsername(String username);
 
+    Hr loadUserByEmployeeId(Integer employeeId);
+
     /**
      * @return java.util.List<Role>
      * @Author xuezixiang

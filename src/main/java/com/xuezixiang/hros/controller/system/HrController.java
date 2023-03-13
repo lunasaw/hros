@@ -8,6 +8,7 @@ import com.xuezixiang.hros.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,6 +28,12 @@ public class HrController {
     @GetMapping("/")
     public List<Hr> getAllHRs(String name) {
         return hrService.getAllHRs(name);
+
+    }
+
+    @GetMapping("/base")
+    public List<Hr> getBaseHr() {
+        return Collections.singletonList(hrService.getBaseHr());
 
     }
 

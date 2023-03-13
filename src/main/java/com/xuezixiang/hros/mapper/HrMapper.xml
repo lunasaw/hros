@@ -12,6 +12,8 @@
         <result column="password" property="password" jdbcType="VARCHAR"/>
         <result column="userface" property="userface" jdbcType="VARCHAR"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="employee_id" property="employeeId" jdbcType="VARCHAR"/>
+
     </resultMap>
     <resultMap id="BaseResultMap1" type="com.xuezixiang.hros.model.Hr" extends="BaseResultMap">
         <collection property="roles" ofType="com.xuezixiang.hros.model.Role">
@@ -21,7 +23,7 @@
         </collection>
     </resultMap>
     <sql id="Base_Column_List">
-        id, name, phone, telephone, address, enabled, username, password, userface, remark
+        id, name, phone, telephone, address, enabled, username, password, userface, remark,  employee_id
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -34,6 +36,11 @@
     <include refid="Base_Column_List" />
     FROM  hr WHERE username=#{username}
     </select>
+    <select id="loadUserByEmployeeId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  hr WHERE employee_id=#{employeeId}
+    </select>
     <select id="getHrRolesById" resultType="com.xuezixiang.hros.model.Role">
         select r.*
         from role r,
@@ -43,13 +50,15 @@
     </select>
     <select id="getAllHRs"  resultMap="BaseResultMap1">
       SELECT
-      hr.id, hr.name, hr.phone, hr.telephone, hr.address, hr.enabled, hr.username, hr.userface, hr.remark, r.id as rid, r.name as rname, r.namezh as rnamezh
+      hr.id, hr.name, hr.phone, hr.telephone, hr.address, hr.enabled, hr.username, hr.userface, hr.remark, hr.employee_id, r.id as rid, r.name as rname, r.namezh as rnamezh
       FROM  hr left join hr_role hrr on  hr.id = hrr.hrid left join role r on hrr.rid = r.id
-      WHERE hr.id != #{id,jdbcType=INTEGER}
+      WHERE hr.id != #{id,jdbcType=INTEGER} AND hr.employee_id is NULL
       <if test="name != null" >
         AND  hr.name LIKE  concat('%',#{name,jdbcType=VARCHAR},'%')
         </if>
+
     </select>
+
     <select id="getAllHrsExceptCurrentHr" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
@@ -67,11 +76,11 @@
         insert into hr (name, phone,
                         telephone, address, enabled,
                         username, password, userface,
-                        remark)
+                        remark, employee_id)
         values (#{name,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR},
                 #{telephone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{enabled,jdbcType=BIT},
                 #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{userface,jdbcType=VARCHAR},
-                #{remark,jdbcType=VARCHAR})
+                #{remark,jdbcType=VARCHAR}, #{employeeId,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" parameterType="com.xuezixiang.hros.model.Hr">
         insert into hr

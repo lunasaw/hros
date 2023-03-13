@@ -22,7 +22,9 @@ public class AppraiseService {
 
     public Integer addAppraise(Appraise appraise) {
         oplogService.addOpLog(LogUtils.addLog((byte) 10,"添加员工考评eid:" + appraise.getEid()));
-        return appraiseMapper.insertSelective(appraise);
+        int i = appraiseMapper.insertSelective(appraise);
+
+        return i;
     }
 
     public Integer deleteAppraise(Integer eid, Integer id) {

@@ -31,6 +31,16 @@ public class Hr implements UserDetails {
 
     private String remark;
 
+    private int employeeId;
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
     private List<Role> roles;
 
     public Integer getId() {
