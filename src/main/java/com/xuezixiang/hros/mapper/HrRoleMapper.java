@@ -3,6 +3,8 @@ package com.xuezixiang.hros.mapper;
 import com.xuezixiang.hros.model.HrRole;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface HrRoleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -17,6 +19,8 @@ public interface HrRoleMapper {
     int updateByPrimaryKey(HrRole record);
 
     int deleteByHeId(Integer hrid);
+
+    List<HrRole> selectByHrId(Integer hrid);
 
     int deleteByRoleId(Integer rid);
 

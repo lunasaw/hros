@@ -37,6 +37,33 @@ public class HrController {
 
     }
 
+    @PostMapping("/modifyPass")
+    public boolean modifyPass(@RequestBody RePass rePass) {
+      return hrService.modifyPass(rePass.getPassword(), rePass.getRePassword());
+    }
+
+
+    public static class RePass{
+      private   String password;
+      private  String rePassword;
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        public String getRePassword() {
+            return rePassword;
+        }
+
+        public void setRePassword(String rePassword) {
+            this.rePassword = rePassword;
+        }
+    }
+
     @PostMapping("/add")
     public RespBean addHr(@RequestBody Hr hr) {
         if (hrService.addHr(hr) == 1) {

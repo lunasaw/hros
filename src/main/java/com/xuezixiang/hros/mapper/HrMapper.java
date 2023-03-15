@@ -20,6 +20,8 @@ public interface HrMapper {
 
     int updateByPrimaryKey(Hr record);
 
+    int updatePasswordByPrimaryKey(Hr record);
+
     /**
      * @return Hr
      * @Author xuezixiang

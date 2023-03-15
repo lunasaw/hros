@@ -120,6 +120,7 @@ public class EmployeeService {
         if (StringUtils.isBlank(hr.getUserface())){
             hr.setUserface("https://imgsa.baidu.com/forum/pic/item/a832bc315c6034a8df786e5ac31349540823766e.jpg");
         }
+        hr.setEnabled(true);
         hr.setEmployeeId(employeeByName.getId());
         hrMapper.insert(hr);
         Hr addHr = hrMapper.loadUserByEmployeeId(employeeByName.getId());

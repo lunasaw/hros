@@ -15,6 +15,13 @@
     from hr_role
     where id = #{id,jdbcType=INTEGER}
     </select>
+    <select id="selectByHrId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from hr_role
+        where hrid = #{hrid,jdbcType=INTEGER}
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
         from hr_role
@@ -85,4 +92,5 @@
             rid  = #{rid,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
+
 </mapper>

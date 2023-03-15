@@ -14,12 +14,17 @@
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
         <result column="employee_id" property="employeeId" jdbcType="VARCHAR"/>
 
+        <collection property="roles" ofType="com.xuezixiang.hros.model.Role">
+            <id column="rid" property="id" jdbcType="INTEGER"/>
+            <result column="rname" property="name" jdbcType="VARCHAR"/>
+            <result column="rnamezh" property="namezh" jdbcType="VARCHAR"/>
+        </collection>
     </resultMap>
     <resultMap id="BaseResultMap1" type="com.xuezixiang.hros.model.Hr" extends="BaseResultMap">
         <collection property="roles" ofType="com.xuezixiang.hros.model.Role">
             <id column="rid" property="id" jdbcType="INTEGER"/>
             <result column="rname" property="name" jdbcType="VARCHAR"/>
-            <result column="rnameZh" property="namezh" jdbcType="VARCHAR"/>
+            <result column="rnamezh" property="namezh" jdbcType="VARCHAR"/>
         </collection>
     </resultMap>
     <sql id="Base_Column_List">
@@ -36,10 +41,11 @@
     <include refid="Base_Column_List" />
     FROM  hr WHERE username=#{username}
     </select>
-    <select id="loadUserByEmployeeId" resultMap="BaseResultMap">
+    <select id="loadUserByEmployeeId" resultMap="BaseResultMap1">
         SELECT
-        <include refid="Base_Column_List" />
-        FROM  hr WHERE employee_id=#{employeeId}
+            hr.id, hr.name, hr.phone, hr.telephone, hr.address, hr.enabled, hr.username, hr.userface, hr.remark, hr.employee_id, r.id as rid, r.name as rname, r.namezh as rnamezh
+        FROM  hr left join hr_role hrr on  hr.id = hrr.hrid left join role r on hrr.rid = r.id
+        WHERE  hr.employee_id=#{employeeId}
     </select>
     <select id="getHrRolesById" resultType="com.xuezixiang.hros.model.Role">
         select r.*
@@ -182,6 +188,12 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <update id="updatePasswordByPrimaryKey" parameterType="com.xuezixiang.hros.model.Hr">
+        update hr
+            password = #{password,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
     <update id="updateByPrimaryKey" parameterType="com.xuezixiang.hros.model.Hr">
         update hr
         set name      = #{name,jdbcType=VARCHAR},
@@ -193,6 +205,6 @@
             password  = #{password,jdbcType=VARCHAR},
             userface  = #{userface,jdbcType=VARCHAR},
             remark    = #{remark,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

@@ -2,7 +2,9 @@ package com.xuezixiang.hros.service;
 
 import com.xuezixiang.hros.mapper.HrMapper;
 import com.xuezixiang.hros.mapper.HrRoleMapper;
+import com.xuezixiang.hros.mapper.RoleMapper;
 import com.xuezixiang.hros.model.Hr;
+import com.xuezixiang.hros.model.HrRole;
 import com.xuezixiang.hros.model.OpLog;
 import com.xuezixiang.hros.service.utils.Hruitls;
 import org.apache.commons.lang3.StringUtils;
@@ -10,13 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @Description :
@@ -33,6 +39,9 @@ public class HrService implements UserDetailsService {
     HrRoleMapper hrRoleMapper;
     @Autowired
     OplogService oplogService;
+
+    @Autowired
+    RoleMapper roleMapper;
 
     private static Logger Loggerlogger = Logger.getLogger("HrService");
 
@@ -56,19 +65,43 @@ public class HrService implements UserDetailsService {
         if (hr == null){
             hr = hrMapper.loadUserByUsername(Hruitls.getCurrent().getUsername());
         }
+        hr.setRoles(hrMapper.getHrRolesById(hr.getId()));
         return hr;
+    }
+
+    /**
+     * 修改密码
+     * @param sno
+     * @param password
+     * @param rePassword
+     * @return
+     */
+    public boolean modifyPass(String password,String rePassword) {
+        Hr hr = getBaseHr();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        if(encoder.matches(password, hr.getPassword())) {
+            String encode = encoder.encode(rePassword);
+            rePassword = encode;
+            hr.setPassword(rePassword);
+            hrMapper.updateByPrimaryKey(hr);
+            return true;
+        }else {
+            return false;
+        }
     }
 
 
     @Transactional
     public boolean updateHrRole(Integer hrid, Integer[] rids) {
+        Integer[] rids2 =  Stream.of(rids).filter(Objects::nonNull).toArray(Integer[]::new);
+
         oplogService.addOpLog(new OpLog((byte) 8,new Date(),"操作员角色更新", Hruitls.getCurrent().getName()));
-        Loggerlogger.warning("hrid:"+hrid + Arrays.toString(rids));
+        Loggerlogger.warning("hrid:"+hrid + Arrays.toString(rids2));
         int i = hrRoleMapper.deleteByHeId(hrid);
-        if (rids == null || rids.length == 0) {
+        if (rids2 == null || rids2.length == 0) {
             return true;
         } else {
-            return i >= 0 && hrRoleMapper.addHrRole(hrid, rids) == rids.length;
+            return i >= 0 && hrRoleMapper.addHrRole(hrid, rids2) == rids2.length;
         }
     }
 
