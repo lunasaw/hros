@@ -8,8 +8,10 @@ import com.xuezixiang.hros.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Description :
@@ -33,7 +35,10 @@ public class HrController {
 
     @GetMapping("/base")
     public List<Hr> getBaseHr() {
-        return Collections.singletonList(hrService.getBaseHr());
+        Hr baseHr = hrService.getBaseHr();
+        List<String> collect = Arrays.stream(baseHr.getWorkDate().split(",")).collect(Collectors.toList());
+        baseHr.setWorkDates(collect);
+        return Collections.singletonList(baseHr);
 
     }
 
@@ -42,6 +47,24 @@ public class HrController {
       return hrService.modifyPass(rePass.getPassword(), rePass.getRePassword());
     }
 
+    @PostMapping("/wordDate")
+    public boolean wordDate(@RequestBody WordDate wordDate) {
+        return hrService.wordDate(wordDate.getDate());
+    }
+
+
+
+    public static class WordDate{
+        private String date;
+
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+    }
 
     public static class RePass{
       private   String password;
@@ -95,9 +118,15 @@ public class HrController {
 
     @DeleteMapping("/{id}")
     public RespBean deleteHrById(@PathVariable Integer id) {
-        if (hrService.deleteHrById(id) == 1) {
+        Integer integer = hrService.deleteHrById(id);
+        if (integer== 1) {
             return RespBean.ok("删除成功!");
         }
+        if(integer == 3){
+            return RespBean.error("员工角色不允许删除");
+
+        }
+
         return RespBean.error("删除失败!");
     }
 

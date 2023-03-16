@@ -115,6 +115,7 @@ public class EmployeeService {
         }
         if (StringUtils.isNoneBlank(employeeByName.getPhone())){
             hr.setPhone(employeeByName.getPhone());
+            hr.setTelephone(employeeByName.getPhone());
         }
         hr.setPassword("$2a$10$ySG2lkvjFHY5O0./CPIE1OI8VJsuKYEzOYzqIa7AJR6sEgSzUFOAm");
         if (StringUtils.isBlank(hr.getUserface())){

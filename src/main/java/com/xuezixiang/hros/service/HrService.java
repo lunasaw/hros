@@ -1,5 +1,6 @@
 package com.xuezixiang.hros.service;
 
+import com.xuezixiang.hros.controller.system.HrController;
 import com.xuezixiang.hros.mapper.HrMapper;
 import com.xuezixiang.hros.mapper.HrRoleMapper;
 import com.xuezixiang.hros.mapper.RoleMapper;
@@ -16,10 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -71,7 +69,6 @@ public class HrService implements UserDetailsService {
 
     /**
      * 修改密码
-     * @param sno
      * @param password
      * @param rePassword
      * @return
@@ -88,6 +85,17 @@ public class HrService implements UserDetailsService {
         }else {
             return false;
         }
+    }
+
+    public boolean wordDate(String wordDate) {
+        Hr hr = getBaseHr();
+        List<String> collect = Arrays.stream(Optional.ofNullable(hr.getWorkDate()).orElse(StringUtils.EMPTY).split(",")).collect(Collectors.toList());
+        collect.add(wordDate);
+        String wordDateStr = collect.stream().collect(Collectors.joining(","));
+
+        hr.setWorkDate(wordDateStr);
+        hrMapper.updateWorkDate(hr);
+        return true;
     }
 
 
@@ -120,6 +128,16 @@ public class HrService implements UserDetailsService {
     }
 
     public Integer deleteHrById(Integer id) {
+        if (id == null){
+            return 0;
+        }
+        Hr hr = hrMapper.selectByPrimaryKey(id);
+        if (hr == null){
+            return 0;
+        }
+        if ("员工角色".equals(hr.getName())){
+            return 3;
+        }
         oplogService.addOpLog(new OpLog((byte) 8, new Date(), "删除操作员: id=" + id, Hruitls.getCurrent().getName()));
         return hrMapper.deleteByPrimaryKey(id);
     }
@@ -127,4 +145,6 @@ public class HrService implements UserDetailsService {
     public List<Hr> getAllHrsExceptCurrentHr() {
         return hrMapper.getAllHrsExceptCurrentHr(Hruitls.getCurrent().getId());
     }
+
+
 }

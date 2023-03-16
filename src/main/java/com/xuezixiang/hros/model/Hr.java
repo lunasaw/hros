@@ -33,6 +33,26 @@ public class Hr implements UserDetails {
 
     private int employeeId;
 
+    private String workDate;
+
+    private List<String> workDates;
+
+    public List<String> getWorkDates() {
+        return workDates;
+    }
+
+    public void setWorkDates(List<String> workDates) {
+        this.workDates = workDates;
+    }
+
+    public String getWorkDate() {
+        return workDate;
+    }
+
+    public void setWorkDate(String workDate) {
+        this.workDate = workDate;
+    }
+
     public int getEmployeeId() {
         return employeeId;
     }
