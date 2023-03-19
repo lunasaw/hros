@@ -11,7 +11,7 @@
  Target Server Version : 50736
  File Encoding         : 65001
 
- Date: 16/03/2023 22:47:22
+ Date: 19/03/2023 17:05:27
 */
 
 SET NAMES utf8mb4;
@@ -340,7 +340,7 @@ CREATE TABLE `hr` (
 -- Records of hr
 -- ----------------------------
 BEGIN;
-INSERT INTO `hr` VALUES (3, '系统管理员', '18568887789', '029-82881234', '深圳南山', 1, 'admin', '$2a$10$ey5EvT8bEjRGvlAV2Bs6Su8ct9V/h69UxTs7TSn8t8..nNpLs3igu', 'https://imgsa.baidu.com/forum/pic/item/a832bc315c6034a8df786e5ac31349540823766e.jpg', NULL, NULL, ',2023-02-28,2023-03-07,2023-03-14,2023-03-15,2023-03-20,2023-03-08,2023-03-02,2023-03-10,2023-03-16');
+INSERT INTO `hr` VALUES (3, '系统管理员', '18568887789', '029-82881234', '深圳南山', 1, 'admin', '$2a$10$ey5EvT8bEjRGvlAV2Bs6Su8ct9V/h69UxTs7TSn8t8..nNpLs3igu', 'https://imgsa.baidu.com/forum/pic/item/a832bc315c6034a8df786e5ac31349540823766e.jpg', NULL, NULL, ',2023-02-28,2023-03-07,2023-03-14,2023-03-15,2023-03-20,2023-03-08,2023-03-02,2023-03-10,2023-03-16,2023-03-24,2023-03-06');
 INSERT INTO `hr` VALUES (5, '李白', '18568123489', '029-82123434', '海口美兰', 1, 'libai', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://imgsa.baidu.com/forum/pic/item/a832bc315c6034a8df786e5ac31349540823766e.jpg', NULL, NULL, NULL);
 INSERT INTO `hr` VALUES (10, '韩愈', '18568123666', '029-82111555', '广州番禺', 1, 'hanyu', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://imgsa.baidu.com/forum/pic/item/f9ebc3cec3fdfc0323f23563dc3f8794a5c2267e.jpg', NULL, NULL, NULL);
 INSERT INTO `hr` VALUES (11, '柳宗元', '18568123377', '029-82111333', '广州天河', 1, 'liuzongyuan', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://imgsa.baidu.com/forum/pic/item/3ea40f2442a7d933062c32a8a54bd11372f00178.jpg', NULL, NULL, NULL);
@@ -374,7 +374,7 @@ INSERT INTO `hr` VALUES (41, '轩辕敬城', '18568123666', '029-82111555', '广
 INSERT INTO `hr` VALUES (43, '耶律洪才', '18568128888', '029-82111222', '广州越秀', 1, '耶律洪才', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517070040185&di=be0375e0c3db6c311b837b28c208f318&imgtype=0&src=http%3A%2F%2Fimg2.soyoung.com%2Fpost%2F20150213%2F6%2F20150213141918532.jpg', NULL, NULL, NULL);
 INSERT INTO `hr` VALUES (44, '员工角色', '2342342', '32423423', '员工角色', 1, '员工角色', '$2a$10$ySG2lkvjFHY5O0./CPIE1OI8VJsuKYEzOYzqIa7AJR6sEgSzUFOAm', 'https://imgsa.baidu.com/forum/pic/item/a832bc315c6034a8df786e5ac31349540823766e.jpg', '员工角色', NULL, NULL);
 INSERT INTO `hr` VALUES (45, '小红', '2342342', '32423423', '测试', 1, '小红', '$2a$10$ySG2lkvjFHY5O0./CPIE1OI8VJsuKYEzOYzqIa7AJR6sEgSzUFOAm', 'https://imgsa.baidu.com/forum/pic/item/a832bc315c6034a8df786e5ac31349540823766e.jpg', '测试小红', 5268, NULL);
-INSERT INTO `hr` VALUES (46, '小白', '15696756582', NULL, '无', 1, '小白', '$2a$10$KGgUwzjGXyIwLovDLccnkOfTYMVMSIFs4CMVpH/.f1DxRN.DPvnuO', 'https://imgsa.baidu.com/forum/pic/item/a832bc315c6034a8df786e5ac31349540823766e.jpg', NULL, 5271, ',2023-03-08,2023-03-14,2023-03-07,2023-02-28,2023-03-23');
+INSERT INTO `hr` VALUES (46, '小白', '15696756582', '32423423', '无', 1, '小白', '$2a$10$KGgUwzjGXyIwLovDLccnkOfTYMVMSIFs4CMVpH/.f1DxRN.DPvnuO', 'https://imgsa.baidu.com/forum/pic/item/a832bc315c6034a8df786e5ac31349540823766e.jpg', NULL, 5271, ',2023-03-09,2023-03-14,2023-03-19');
 COMMIT;
 
 -- ----------------------------
@@ -489,7 +489,7 @@ CREATE TABLE `menu` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `parentId` (`parentId`) USING BTREE,
   CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`parentId`) REFERENCES `menu` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of menu
@@ -507,7 +507,7 @@ INSERT INTO `menu` VALUES (9, '/employee/basic/**', '/emp/basic2', 'EmpBasic2', 
 INSERT INTO `menu` VALUES (10, '/personnel/ec/**', '/per/ec', 'PerEc', '员工奖惩', 'fa fa-american-sign-language-interpreting', NULL, 1, 3, 1);
 INSERT INTO `menu` VALUES (11, '/personnel/train/**', '/per/train', 'PerTrain', '员工培训', 'fa fa-user-plus', NULL, 1, 3, 1);
 INSERT INTO `menu` VALUES (12, '/personnel/salary/**', '/per/salary', 'PerSalary', '员工调薪', 'fa fa-braille', NULL, 1, 3, 1);
-INSERT INTO `menu` VALUES (13, '/personnel/remove/**', '/per/mv', 'PerMv', '员工调动', 'fa fa-blind', NULL, 1, 3, 1);
+INSERT INTO `menu` VALUES (13, '/personnel/remove/**', '/per/mv', 'PerMv', '调动职务', 'fa fa-blind', NULL, 1, 3, 1);
 INSERT INTO `menu` VALUES (14, '/salary/sob/**', '/sal/sob', 'SalSob', '工资账套管理', 'fa fa-credit-card-alt ', NULL, 1, 4, 1);
 INSERT INTO `menu` VALUES (15, '/salary/sobcfg/**', '/sal/sobcfg', 'SalSobCfg', '员工账套设置', 'fa fa-cc-amex', NULL, 1, 4, 1);
 INSERT INTO `menu` VALUES (16, '/salary/table/**', '/sal/table', 'SalTable', '工资表管理', 'fa fa-indent', NULL, 1, 4, 1);
@@ -521,6 +521,7 @@ INSERT INTO `menu` VALUES (25, '/system/log/**', '/sys/log', 'SysLog', '操作�
 INSERT INTO `menu` VALUES (26, '/system/hr/**', '/sys/hr', 'SysHr', '操作员管理', 'fa fa-users', NULL, 1, 6, 1);
 INSERT INTO `menu` VALUES (27, '/system/hr/**', '/sys/hrbase', 'SysHrBase', '个人中心', 'fa fa-users', NULL, 1, 6, 1);
 INSERT INTO `menu` VALUES (28, '/employee/basic/**', '/emp/calenderBox', 'EmpCalenderBox', '员工打卡', 'fa fa-braille', NULL, 1, 2, 1);
+INSERT INTO `menu` VALUES (29, '/personnel/train/**', '/per/train2', 'PerTrain2', '个人培训', 'fa fa-user-plus', NULL, 1, 2, 1);
 COMMIT;
 
 -- ----------------------------
@@ -536,7 +537,7 @@ CREATE TABLE `menu_role` (
   KEY `rid` (`rid`) USING BTREE,
   CONSTRAINT `menu_role_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `menu` (`id`),
   CONSTRAINT `menu_role_ibfk_2` FOREIGN KEY (`rid`) REFERENCES `role` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1031 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1057 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of menu_role
@@ -559,30 +560,32 @@ INSERT INTO `menu_role` VALUES (935, 23, 2);
 INSERT INTO `menu_role` VALUES (936, 24, 2);
 INSERT INTO `menu_role` VALUES (937, 25, 2);
 INSERT INTO `menu_role` VALUES (938, 26, 2);
-INSERT INTO `menu_role` VALUES (1007, 8, 6);
-INSERT INTO `menu_role` VALUES (1008, 9, 6);
-INSERT INTO `menu_role` VALUES (1009, 7, 6);
-INSERT INTO `menu_role` VALUES (1010, 10, 6);
-INSERT INTO `menu_role` VALUES (1011, 11, 6);
-INSERT INTO `menu_role` VALUES (1012, 12, 6);
-INSERT INTO `menu_role` VALUES (1013, 13, 6);
-INSERT INTO `menu_role` VALUES (1014, 28, 6);
-INSERT INTO `menu_role` VALUES (1015, 14, 6);
-INSERT INTO `menu_role` VALUES (1016, 15, 6);
-INSERT INTO `menu_role` VALUES (1017, 16, 6);
-INSERT INTO `menu_role` VALUES (1018, 19, 6);
-INSERT INTO `menu_role` VALUES (1019, 20, 6);
-INSERT INTO `menu_role` VALUES (1020, 21, 6);
-INSERT INTO `menu_role` VALUES (1021, 22, 6);
-INSERT INTO `menu_role` VALUES (1022, 23, 6);
-INSERT INTO `menu_role` VALUES (1023, 24, 6);
-INSERT INTO `menu_role` VALUES (1024, 25, 6);
-INSERT INTO `menu_role` VALUES (1025, 26, 6);
-INSERT INTO `menu_role` VALUES (1026, 27, 6);
-INSERT INTO `menu_role` VALUES (1027, 8, 34);
-INSERT INTO `menu_role` VALUES (1028, 9, 34);
-INSERT INTO `menu_role` VALUES (1029, 28, 34);
-INSERT INTO `menu_role` VALUES (1030, 27, 34);
+INSERT INTO `menu_role` VALUES (1031, 8, 6);
+INSERT INTO `menu_role` VALUES (1032, 9, 6);
+INSERT INTO `menu_role` VALUES (1033, 28, 6);
+INSERT INTO `menu_role` VALUES (1034, 29, 6);
+INSERT INTO `menu_role` VALUES (1035, 7, 6);
+INSERT INTO `menu_role` VALUES (1036, 10, 6);
+INSERT INTO `menu_role` VALUES (1037, 11, 6);
+INSERT INTO `menu_role` VALUES (1038, 12, 6);
+INSERT INTO `menu_role` VALUES (1039, 13, 6);
+INSERT INTO `menu_role` VALUES (1040, 14, 6);
+INSERT INTO `menu_role` VALUES (1041, 15, 6);
+INSERT INTO `menu_role` VALUES (1042, 16, 6);
+INSERT INTO `menu_role` VALUES (1043, 19, 6);
+INSERT INTO `menu_role` VALUES (1044, 20, 6);
+INSERT INTO `menu_role` VALUES (1045, 21, 6);
+INSERT INTO `menu_role` VALUES (1046, 22, 6);
+INSERT INTO `menu_role` VALUES (1047, 23, 6);
+INSERT INTO `menu_role` VALUES (1048, 24, 6);
+INSERT INTO `menu_role` VALUES (1049, 25, 6);
+INSERT INTO `menu_role` VALUES (1050, 26, 6);
+INSERT INTO `menu_role` VALUES (1051, 27, 6);
+INSERT INTO `menu_role` VALUES (1052, 8, 34);
+INSERT INTO `menu_role` VALUES (1053, 9, 34);
+INSERT INTO `menu_role` VALUES (1054, 28, 34);
+INSERT INTO `menu_role` VALUES (1055, 29, 34);
+INSERT INTO `menu_role` VALUES (1056, 27, 34);
 COMMIT;
 
 -- ----------------------------
@@ -686,12 +689,14 @@ CREATE TABLE `oplog` (
   `operate` varchar(255) DEFAULT NULL COMMENT '操作内容',
   `hrname` varchar(255) DEFAULT NULL COMMENT '操作员',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2649 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=2651 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of oplog
 -- ----------------------------
 BEGIN;
+INSERT INTO `oplog` VALUES (2649, 1, '2023-03-19 16:38:35', '角色权限变更', '系统管理员');
+INSERT INTO `oplog` VALUES (2650, 1, '2023-03-19 16:54:31', '角色权限变更', '系统管理员');
 COMMIT;
 
 -- ----------------------------
