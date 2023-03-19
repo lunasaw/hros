@@ -78,8 +78,6 @@ public class ScoreController {
 
         Map<Integer, Department> departmentMap = employeeAll.stream().collect(Collectors.toMap(Employee::getDepartmentid, e->e.getDepartment(), (m1, m2) -> m1));
 
-//        Map<Integer, Employee> collect = employeeAll.stream().collect(Collectors.toMap(Employee::getDepartmentid, Function.identity(), (m1, m2) -> m1));
-
         Map<Integer, List<Employee>> depMap = employeeAll.stream().filter(Objects::nonNull).collect(Collectors.groupingBy(Employee::getDepartmentid));
         List<SalaryData> list = new ArrayList<>();
 
