@@ -89,7 +89,7 @@ public class HrService implements UserDetailsService {
 
     public boolean wordDate(String wordDate) {
         Hr hr = getBaseHr();
-        List<String> collect = Arrays.stream(Optional.ofNullable(hr.getWorkDate()).orElse(StringUtils.EMPTY).split(",")).collect(Collectors.toList());
+        List<String> collect = Arrays.stream(Optional.ofNullable(hr.getWorkDate()).orElse(StringUtils.EMPTY).split(",")).filter(StringUtils::isNoneBlank).collect(Collectors.toList());
         collect.add(wordDate);
         String wordDateStr = collect.stream().collect(Collectors.joining(","));
 
