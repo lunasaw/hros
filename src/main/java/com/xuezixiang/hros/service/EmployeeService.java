@@ -275,7 +275,7 @@ public class EmployeeService {
                             .forEach(o1 -> {
                                 o1.setDimission(o.getSum());
                                 double d = (o.getSum() / new Double(employeeRecycleList.size()));
-                                o1.setaDouble((double) Math.round(d * 100) / 100);
+                                o1.setaDouble((double) o1.getDimission() / (o1.getEntrant() + o1.getDimission()));
                             });
 
                 });
@@ -287,7 +287,7 @@ public class EmployeeService {
         dataViewPosition().stream().forEach(o -> {
             dataModelTS.add(new DataModelT(o.getSum(), o.getName()));
         });
-        List<EmployeeRecycle> employeeRecycleList = employeeRecycleService.getAllEmployeeRecycle();
+//        List<EmployeeRecycle> employeeRecycleList = employeeRecycleService.getAllEmployeeRecycle();
         employeeRecycleService.dataViewPosition().stream()
                 .forEach(o -> {
                     dataModelTS.stream()
@@ -295,7 +295,7 @@ public class EmployeeService {
                             .forEach(o1 -> {
                                 o1.setDimission(o.getSum());
                                 o1.setSum(o.getWorkage());
-                                o1.setaDouble((double) Math.round((o.getSum() / new Double(employeeRecycleList.size())) * 100) / 100);
+                                o1.setaDouble((double) o1.getDimission() / (o1.getEntrant() + o1.getDimission()));
 
                             });
 
@@ -317,7 +317,7 @@ public class EmployeeService {
                                 o1.setDimission(o.getSum());
                                 double d = (o.getSum() / new Double(employeeRecycleList.size()));
                                 o1.setSum(o.getWorkage());
-                                o1.setaDouble((double) Math.round(d * 100) / 100);
+                                o1.setaDouble((double) o1.getDimission() / (o1.getEntrant() + o1.getDimission()));
                             });
 
                 });

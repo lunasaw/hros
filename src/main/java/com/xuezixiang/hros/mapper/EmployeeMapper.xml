@@ -119,6 +119,8 @@
         <collection property="employeeremoveList" ofType="com.xuezixiang.hros.model.Employeeremove">
             <result column="afterDepId" property="afterdepid" jdbcType="INTEGER"/>
             <result column="afterJobId" property="afterjobid" jdbcType="INTEGER"/>
+            <result column="afterPid" property="afterPid" jdbcType="INTEGER"/>
+
             <result column="removeDate" property="removedate" jdbcType="DATE"/>
             <result column="reason" property="reason" jdbcType="VARCHAR"/>
             <association property="department" javaType="com.xuezixiang.hros.model.Department">
@@ -127,6 +129,10 @@
             <association property="jobLevel" javaType="com.xuezixiang.hros.model.JobLevel">
                 <result column="jlname" property="name"/>
             </association>
+            <association property="position" javaType="com.xuezixiang.hros.model.Position">
+                <result column="posname" property="name"/>
+            </association>
+
         </collection>
     </resultMap>
     <resultMap id="DataViewbean" type="com.xuezixiang.hros.model.datas.DataModel">
@@ -642,6 +648,7 @@
         pos.`name` AS posname,
         em.afterDepId,
         em.afterJobId,
+        em.afterPid,
         em.removeDate ,
         em.reason,
         dt.`name` AS dtname,

@@ -53,6 +53,9 @@ public class Hr implements UserDetails {
     }
 
     public void setWorkDate(String workDate) {
+        if (StringUtils.isEmpty(workDate)) {
+            return;
+        }
         List<String> collect = Arrays.stream(workDate.split(",")).filter(StringUtils::isNoneBlank).collect(Collectors.toList());
         this.workDates = collect;
         this.workDate = workDate;

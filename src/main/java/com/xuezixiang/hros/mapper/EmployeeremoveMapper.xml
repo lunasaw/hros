@@ -6,13 +6,15 @@
         <result column="eid" property="eid" jdbcType="INTEGER"/>
         <result column="afterDepId" property="afterdepid" jdbcType="INTEGER"/>
         <result column="afterJobId" property="afterjobid" jdbcType="INTEGER"/>
+        <result column="afterPid" property="afterPid" jdbcType="INTEGER"/>
+
         <result column="removeDate" property="removedate" jdbcType="DATE"/>
         <result column="reason" property="reason" jdbcType="VARCHAR"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, eid, afterDepId, afterJobId, removeDate, reason, remark
-  </sql>
+        id, eid, afterDepId, afterJobId, afterPid, removeDate, reason, remark
+    </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -31,10 +33,11 @@
     </delete>
     <insert id="insert" parameterType="com.xuezixiang.hros.model.Employeeremove">
         insert into employeeremove (id, eid, afterDepId,
-                                    afterJobId, removeDate, reason,
+                                    afterJobId, afterPid, removeDate, reason,
                                     remark)
         values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{afterdepid,jdbcType=INTEGER},
-                #{afterjobid,jdbcType=INTEGER}, #{removedate,jdbcType=DATE}, #{reason,jdbcType=VARCHAR},
+                #{afterjobid,jdbcType=INTEGER}, #{afterPid,jdbcType=INTEGER}, #{removedate,jdbcType=DATE},
+                #{reason,jdbcType=VARCHAR},
                 #{remark,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.xuezixiang.hros.model.Employeeremove">
@@ -48,42 +51,48 @@
             </if>
             <if test="afterdepid != null">
                 afterDepId,
-      </if>
-      <if test="afterjobid != null" >
-        afterJobId,
-      </if>
-      <if test="removedate != null" >
-        removeDate,
-      </if>
-      <if test="reason != null" >
-        reason,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-    </trim>
+            </if>
+            <if test="afterjobid != null">
+                afterJobId,
+            </if>
+            <if test="afterPid != null">
+                afterPid,
+            </if>
+            <if test="removedate != null">
+                removeDate,
+            </if>
+            <if test="reason != null">
+                reason,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="eid != null" >
-        #{eid,jdbcType=INTEGER},
-      </if>
-      <if test="afterdepid != null" >
-        #{afterdepid,jdbcType=INTEGER},
-      </if>
-      <if test="afterjobid != null" >
-        #{afterjobid,jdbcType=INTEGER},
-      </if>
-      <if test="removedate != null" >
-        #{removedate,jdbcType=DATE},
-      </if>
-      <if test="reason != null" >
-        #{reason,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
+        <if test="eid != null">
+            #{eid,jdbcType=INTEGER},
+        </if>
+        <if test="afterdepid != null">
+            #{afterdepid,jdbcType=INTEGER},
+        </if>
+        <if test="afterjobid != null">
+            #{afterjobid,jdbcType=INTEGER},
+        </if>
+        <if test="afterPid != null">
+            #{afterPid,jdbcType=INTEGER},
+        </if>
+        <if test="removedate != null">
+            #{removedate,jdbcType=DATE},
+        </if>
+        <if test="reason != null">
+            #{reason,jdbcType=VARCHAR},
+        </if>
+        <if test="remark != null">
+            #{remark,jdbcType=VARCHAR},
+        </if>
     </trim>
   </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.xuezixiang.hros.model.Employeeremove">

@@ -12,7 +12,10 @@ public class Employeeremove {
     private Integer afterdepid;
 
     private Integer afterjobid;
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone ="GMT+8" )
+
+    private Integer afterPid;
+
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date removedate;
 
     private String reason;
@@ -21,6 +24,24 @@ public class Employeeremove {
 
     private Department department;
     private JobLevel jobLevel;
+
+    private Position position;
+
+    public Integer getAfterPid() {
+        return afterPid;
+    }
+
+    public void setAfterPid(Integer afterPid) {
+        this.afterPid = afterPid;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 
     public Department getDepartment() {
         return department;

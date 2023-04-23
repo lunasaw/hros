@@ -50,6 +50,7 @@ public class EmployeeremoveController {
     @PutMapping("/")
     public RespBean updateEmp(@RequestBody Employee employee) {
         Employeeremove employeeremove = new Employeeremove(employee.getId(),employee.getDepartmentid(),employee.getJoblevelid(),new Date(),employee.getWorkstate());
+        employeeremove.setAfterPid(employee.getPosid());
         employee.setWorkstate("在职");
         if (employeeService.updateEmp(employee) + employeeremoveService.addEmploymove(employeeremove) == 2) {
             return RespBean.ok("调动成功!");
