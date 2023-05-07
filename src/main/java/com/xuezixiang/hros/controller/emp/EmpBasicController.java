@@ -15,9 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @Description :
-
- * @Date: 2019/12/31 11:19
+ * @Description :档案管理（增删改查）
  */
 
 @RestController
@@ -120,7 +118,7 @@ public class EmpBasicController {
      * @return org.springframework.http.ResponseEntity<byte [ ]>
      * @Author xuezixiang
      * @Description 文件下载
-     * @Date 19:04 2020/1/1
+     * @Date 19:04 2023/1/1
      * @Param []
      **/
 
@@ -132,11 +130,11 @@ public class EmpBasicController {
 
 
     /**
-     * @Author xuezixiang
-     * @Description 文件导出
-     * @Date 19:48 2020/1/1
-     * @Param [file]
      * @return RespBean
+     * @Author xuezixiang
+     * @Description 文件导入
+     * @Date 19:48 2023/1/1
+     * @Param [file]
      **/
 
     @PostMapping("/import")

@@ -15,6 +15,4 @@ public class HrosApplication {
         SpringApplication.run(HrosApplication.class, args);
     }
 
-
-
 }

@@ -2,8 +2,7 @@ package com.xuezixiang.hros.model.datas;
 
 /**
  * @Description :
-
- * @Date: 2020/1/6 19:57
+ * @Date: 2023/1/6 19:57
  */
 public class DataModelT  extends DataModel{
     private Integer dimission;

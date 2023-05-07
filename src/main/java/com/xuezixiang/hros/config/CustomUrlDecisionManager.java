@@ -14,8 +14,6 @@ import java.util.Collection;
 
 /**
  * @Description : 判断当前用户是否具备菜单访问
-
- * @Date: 2019/12/24 19:12
  */
 @Component
 public class CustomUrlDecisionManager implements AccessDecisionManager {

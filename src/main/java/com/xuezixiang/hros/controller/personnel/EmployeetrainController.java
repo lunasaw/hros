@@ -12,8 +12,7 @@ import java.util.List;
 
 /**
  * @Description :
-
- * @Date: 2020/1/12 12:27
+ * @Date: 2023/1/12 12:27
  */
 @RestController
 @RequestMapping("/personnel/train")
@@ -91,7 +90,7 @@ public class EmployeetrainController {
      * @return RespBean
      * @Author xuezixiang
      * @Description 删除
-     * @Date 22:35 2020/1/13
+     * @Date 22:35 2023/1/13
      * @Param [eid, id]
      **/
 
@@ -121,7 +120,7 @@ public class EmployeetrainController {
     /**
      * @Author xuezixiang
      * @Description 批量处理
-     * @Date 22:35 2020/1/13
+     * @Date 22:35 2023/1/13
      * @Param [employeetrain, ids, beginDateScope]
      * @return RespBean
      **/

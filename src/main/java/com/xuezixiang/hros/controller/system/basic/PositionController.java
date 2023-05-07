@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @Author xuezixiang
  * @Description 职位
- * @Date 15:01 2019/12/25
+ * @Date 15:01 2022/12/25
  * @Param
  * @return
  **/
@@ -24,11 +24,11 @@ public class PositionController {
     PositionService positionService;
 
     /**
+     * @return java.util.List<Position>
      * @Author xuezixiang
      * @Description 返回显示信息
-     * @Date 15:29 2019/12/25
+     * @Date 15:29 2022/12/25
      * @Param []
-     * @return java.util.List<Position>
      **/
 
     @GetMapping("/")
@@ -45,7 +45,7 @@ public class PositionController {
      * @return RespBean
      * @Author xuezixiang
      * @Description 添加
-     * @Date 15:29 2019/12/25
+     * @Date 15:29 2022/12/25
      * @Param [position]
      **/
 
@@ -58,11 +58,11 @@ public class PositionController {
     }
 
     /**
+     * @return RespBean
      * @Author xuezixiang
      * @Description 更新
-     * @Date 15:29 2019/12/25
+     * @Date 15:29 2022/12/25
      * @Param [position]
-     * @return RespBean
      **/
     @PutMapping("/")
     public RespBean updatePositions(@RequestBody Position position) {
@@ -77,12 +77,13 @@ public class PositionController {
         return  positionService.serchPositions(position);
 
     }
+
     /**
+     * @return RespBean
      * @Author xuezixiang
      * @Description 删除
-     * @Date 15:29 2019/12/25
+     * @Date 15:29 2022/12/25
      * @Param [id]
-     * @return RespBean
      **/
 
     @DeleteMapping("/{id}")
@@ -94,11 +95,11 @@ public class PositionController {
     }
 
     /**
+     * @return RespBean
      * @Author xuezixiang
      * @Description 批量删除
-     * @Date 15:30 2019/12/25
+     * @Date 15:30 2022/12/25
      * @Param [ids]
-     * @return RespBean
      **/
 
     @DeleteMapping("/")

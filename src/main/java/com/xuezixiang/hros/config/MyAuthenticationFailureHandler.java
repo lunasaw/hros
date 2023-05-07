@@ -17,8 +17,6 @@ import java.io.PrintWriter;
 
 /**
  * @Description :
-
- * @Date: 2020/2/11 23:08
  */
 @Component
 public class MyAuthenticationFailureHandler implements AuthenticationFailureHandler {

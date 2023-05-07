@@ -24,8 +24,7 @@ import java.util.stream.Stream;
 
 /**
  * @Description :
-
- * @Date: 2019/12/18 18:59
+ * @Date: 2022/12/18 18:59
  */
 @Transactional
 @Service
@@ -119,9 +118,6 @@ public class HrService implements UserDetailsService {
     }
 
     public Integer addHr(Hr hr) {
-        if (hr == null || StringUtils.isEmpty(hr.getName())) {
-            return 0;
-        }
         oplogService.addOpLog(new OpLog((byte) 8, new Date(), "操作员信息更新:" + hr.getName(), Hruitls.getCurrent().getName()));
         hr.setPassword("$2a$10$ySG2lkvjFHY5O0./CPIE1OI8VJsuKYEzOYzqIa7AJR6sEgSzUFOAm");
         if (StringUtils.isBlank(hr.getUserface())) {

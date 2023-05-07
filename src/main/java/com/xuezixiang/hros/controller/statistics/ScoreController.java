@@ -26,8 +26,7 @@ import java.util.stream.Collectors;
 
 /**
  * @Description :
-
- * @Date: 2020/1/21 13:28
+ * @Date: 2023/1/21 13:28
  */
 @RequestMapping("/statistics/score")
 @RestController
@@ -86,7 +85,7 @@ public class ScoreController {
             // 一个部门平均薪资
             Integer sum = v.stream().map(Employee::getSalary).filter(Objects::nonNull).map(Salary::getAllsalary).filter(Objects::nonNull).reduce(Integer::sum).orElse(0);
 
-            BigDecimal divide = new BigDecimal(sum).divide(BigDecimal.valueOf(v.size()));
+            BigDecimal divide = new BigDecimal(sum).divide(BigDecimal.valueOf(v.size()), BigDecimal.ROUND_HALF_DOWN);
             Department department = departmentMap.get(k);
 
             SalaryData salaryData = new SalaryData();

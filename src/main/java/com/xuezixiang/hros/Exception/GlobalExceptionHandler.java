@@ -11,8 +11,7 @@ import java.util.logging.Logger;
 
 /**
  * @Description :全局异常处理
-
- * @Date: 2019/12/25 16:41
+ * @Date: 2022/12/25 16:41
  */
 
 @RestControllerAdvice

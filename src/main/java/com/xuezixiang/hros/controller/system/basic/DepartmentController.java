@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @Author xuezixiang
  * @Description
- * @Date 23:31 2019/12/28
+ * @Date 23:31 2022/12/28
  * @Param
  * @return
  **/
@@ -49,7 +49,7 @@ public class DepartmentController {
         } else if (dep.getResult() == 1) {
             return RespBean.ok("删除成功");
         } else if (dep.getResult() == -3) {
-            return RespBean.error("该只有一个部门, 无法删除");
+            return RespBean.error("只有一个部门, 无法删除");
         }
         return RespBean.error("删除失败");
     }

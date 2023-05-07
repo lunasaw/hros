@@ -14,8 +14,7 @@ import java.util.List;
 
 /**
  * @Description : 人事记录统计
-
- * @Date: 2020/1/6 16:11
+ * @Date: 2023/1/6 16:11
  */
 @RestController
 @RequestMapping("/statistics/recored")
@@ -29,7 +28,7 @@ public class RecoredController {
      * @return java.util.List<DataModelT>
      * @Author xuezixiang
      * @Description 部门入职统计，离职统计 离职率
-     * @Date 10:58 2020/1/7
+     * @Date 10:58 2023/1/7
      * @Param []
      **/
     @Scheduled(cron = "0 0 3 * * ?")
@@ -42,10 +41,10 @@ public class RecoredController {
      * @return java.util.List<DataModelT>
      * @Author xuezixiang
      * @Description 职位入职统计，离职统计 离职工龄 离职率
-     * @Date 16:33 2020/1/7
+     * @Date 16:33 2023/1/7
      * @Param []
      **/
-     @Scheduled(cron = "0 0 3 * * ?")
+    @Scheduled(cron = "0 0 3 * * ?")
       @GetMapping("/workAge")
     public List<DataModelT> dataViewWorkAge(){
         return dataModelTService.dataViewWorkAge();
@@ -55,7 +54,7 @@ public class RecoredController {
      * @return java.util.List<DataModelT>
      * @Author xuezixiang
      * @Description 职称入职统计，离职统计 离职工龄 离职率
-     * @Date 16:51 2020/1/7
+     * @Date 16:51 2023/1/7
      * @Param []
      **/
     @GetMapping("/JobLevel")
@@ -67,7 +66,7 @@ public class RecoredController {
     /**
      * @Author xuezixiang
      * @Description
-     * @Date 16:54 2020/1/7
+     * @Date 16:54 2023/1/7
      * @Param []
      * @return java.util.List<DataModelT>
      **/

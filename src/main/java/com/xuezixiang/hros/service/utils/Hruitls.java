@@ -5,8 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * @Description :
-
- * @Date: 2019/12/29 20:21
+ * @Date: 2022/12/29 20:21
  */
 public class Hruitls {
     public static Hr getCurrent(){

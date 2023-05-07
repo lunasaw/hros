@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @Author xuezixiang
  * @Description
- * @Date 17:21 2019/12/26
+ * @Date 17:21 2022/12/26
  * @Param
  * @return
  **/
@@ -35,8 +35,8 @@ public class PermissController {
     /**
      * @return java.util.List<Menu>
      * @Author xuezixiang
-     * @Description 系統設置裏的菜單處理
-     * @Date 16:17 2020/2/14
+     * @Description 系统设置里的菜单处理
+     * @Date 16:17 2023/2/14
      * @Param []
      **/
 

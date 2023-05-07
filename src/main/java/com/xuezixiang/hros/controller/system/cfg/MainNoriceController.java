@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * @Description :
-
- * @Date: 2020/1/3 10:01
+ * @Date: 2023/1/3 10:01
  */
 @RequestMapping("/system/cfg")
 @RestController

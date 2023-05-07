@@ -19,7 +19,6 @@ import java.util.logging.Logger;
 
 /**
  * @Description : 权限处理,根据请求,分析需要的角色,该类的主要功能就是通过当前的请求地址，获取该地址需要的用户角色
- * @Date: 2019/12/24 12:17
  */
 @Component
 public class CustomFilterInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
@@ -33,7 +32,6 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
      * @return java.util.Collection<org.springframework.security.access.ConfigAttribute> * 返回值是 Collection<ConfigAttribute>，表示当前请求 URL 所需的角色。
      * @Author xuezixiang
      * @Description 当前请求需要的角色, 该方法的参数是一个 FilterInvocation， 开发者可以从 Filterlnvocation 中提取出当前请求的 URL，
-     * @Date 18:13 2019/12/24
      * @Param [object]
      **/
     @Override
@@ -69,7 +67,6 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
      * @return java.util.Collection<org.springframework.security.access.ConfigAttribute>
      * @Author xuezixiang
      * @Description 用来返回所有定义好的权限资源， Spring Security 在启动时会校验 相关配置是否正确，如果不需要校验，那么该方法直接返回 null 即可。
-     * @Date 18:06 2020/2/13
      * @Param []
      **/
 
@@ -82,7 +79,6 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
      * @return boolean
      * @Author xuezixiang
      * @Description 返回类对象是否支持校验。
-     * @Date 18:06 2020/2/13
      * @Param [clazz]
      **/
 

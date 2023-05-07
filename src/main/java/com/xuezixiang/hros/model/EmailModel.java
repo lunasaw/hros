@@ -2,8 +2,7 @@ package com.xuezixiang.hros.model;
 
 /**
  * @Description :
-
- * @Date: 2020/2/18 12:25
+ * @Date: 2023/2/18 12:25
  */
 public class EmailModel {
 

@@ -2,8 +2,7 @@ package com.xuezixiang.hros.model;
 
 /**
  * @Description :标识属性
-
- * @Date: 2019/12/21 13:06
+ * @Date: 2022/12/21 13:06
  */
 public class Meta {
     private Boolean keepalive;

@@ -4,8 +4,7 @@ import java.util.List;
 
 /**
  * @Description : 分页
-
- * @Date: 2019/12/31 11:20
+ * @Date: 2022/12/31 11:20
  */
 public class RespPageBean {
 

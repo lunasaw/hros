@@ -9,8 +9,7 @@ import java.util.List;
 
 /**
  * @Description :
-
- * @Date: 2020/1/5 22:20
+ * @Date: 2023/1/5 22:20
  */
 @Service
 public class LogTypeService {

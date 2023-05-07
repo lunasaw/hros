@@ -34,7 +34,7 @@ public class Hr implements UserDetails {
 
     private String remark;
 
-    private Integer employeeId;
+    private int employeeId;
 
     private String workDate;
 
