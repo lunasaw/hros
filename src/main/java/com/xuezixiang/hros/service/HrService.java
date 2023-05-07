@@ -119,9 +119,12 @@ public class HrService implements UserDetailsService {
     }
 
     public Integer addHr(Hr hr) {
+        if (hr == null || StringUtils.isEmpty(hr.getName())) {
+            return 0;
+        }
         oplogService.addOpLog(new OpLog((byte) 8, new Date(), "操作员信息更新:" + hr.getName(), Hruitls.getCurrent().getName()));
         hr.setPassword("$2a$10$ySG2lkvjFHY5O0./CPIE1OI8VJsuKYEzOYzqIa7AJR6sEgSzUFOAm");
-        if (StringUtils.isBlank(hr.getUserface())){
+        if (StringUtils.isBlank(hr.getUserface())) {
             hr.setUserface("https://imgsa.baidu.com/forum/pic/item/a832bc315c6034a8df786e5ac31349540823766e.jpg");
         }
         return hrMapper.insert(hr);

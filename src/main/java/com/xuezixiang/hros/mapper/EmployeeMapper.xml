@@ -130,7 +130,7 @@
                 <result column="jlname" property="name"/>
             </association>
             <association property="position" javaType="com.xuezixiang.hros.model.Position">
-                <result column="posname" property="name"/>
+                <result column="pos2name" property="name"/>
             </association>
 
         </collection>
@@ -652,12 +652,15 @@
         em.removeDate ,
         em.reason,
         dt.`name` AS dtname,
-        jl.`name` AS jlname
+        jl.`name` AS jlname,
+        pos2.`name` AS pos2name
         FROM
         employee e
         LEFT JOIN employeeremove em ON em.eid = e.id
         LEFT JOIN department dt ON em.afterDepId=dt.id
-        LEFT JOIN joblevel jl ON em.afterJobId = jl.id ,
+        LEFT JOIN joblevel jl ON em.afterJobId = jl.id
+        LEFT JOIN position pos2 ON em.afterPid = pos2.id ,
+
         nation n,
         politicsstatus p,
         department d,
