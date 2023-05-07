@@ -34,7 +34,7 @@ public class Hr implements UserDetails {
 
     private String remark;
 
-    private int employeeId;
+    private Integer employeeId;
 
     private String workDate;
 
@@ -61,11 +61,11 @@ public class Hr implements UserDetails {
         this.workDate = workDate;
     }
 
-    public int getEmployeeId() {
+    public Integer getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Integer employeeId) {
         this.employeeId = employeeId;
     }
 
